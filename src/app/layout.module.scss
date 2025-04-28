@@ -1,0 +1,56 @@
+@use './styles/scss/variables/viewports' as *;
+@use './styles/scss/variables/colors' as *;
+@use './styles/scss/mixins/typography' as *;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden auto;
+  background-color: $layout-color;
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px 0;
+
+    &__navigation {
+      flex-grow: 1;
+      display: flex;
+      max-width: $monitor-viewport-1;
+
+      a {
+        outline: none;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        div {
+          width: 32px;
+          height: 32px;
+          background-color: $link-logo-color;
+          border-radius: 50%;
+        }
+
+        span {
+          @include font-custom(16, 18, left, 'Inter', 700, $link-font-color);
+        }
+      }
+    }
+  }
+
+  &__body {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px 0;
+
+    &__main {
+      flex-grow: 1;
+      display: flex;
+      width: 100%;
+      max-width: $monitor-viewport-1;
+    }
+  }
+}
