@@ -1,0 +1,39 @@
+@use '../../../styles/scss/variables/colors' as *;
+@use '../../../styles/scss/mixins/typography' as *;
+
+.video-display {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  animation: slide-appear 1s ease;
+
+  & > h1 {
+    @include font-custom(18, 56, center, 'Inter', 800, $video-display-title);
+    white-space: normal;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  &__body {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+
+    & > video {
+      width: 100%;
+      max-width: 680px;
+      max-height: 360px;
+    }
+  }
+}
+
+@keyframes slide-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
