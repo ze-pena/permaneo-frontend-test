@@ -1,0 +1,84 @@
+@use '../../../styles/scss/variables/colors' as *;
+@use '../../../styles/scss/mixins/typography' as *;
+
+.course-display {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: slide-appear 1s ease;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+      @include font-custom(18, 56, left, 'Inter', 800, $course-display-title);
+      white-space: normal;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    button {
+      outline: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      background-color: transparent;
+      border: 0;
+      color: $favorite-color;
+    }
+  }
+
+  &__body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    p {
+      @include font-custom(18, 24, left, 'Inter', 400, $course-display-paragraph);
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 56px;
+
+      span {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        strong {
+          @include font-custom(24, 40, left, 'Inter', 800, $course-display-price);
+        }
+
+        small {
+          @include font-custom(10, 14, left, 'Inter', 400, $course-display-date);
+        }
+      }
+
+      button {
+        cursor: pointer;
+        padding: 12px 32px;
+        background-color: $course-display-button-background;
+        border: 0;
+        border-radius: 14px;
+        @include font-custom(18, 24, left, 'Inter', 400, $course-display-button-text);
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+@keyframes slide-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
