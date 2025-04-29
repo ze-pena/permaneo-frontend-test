@@ -6,4 +6,8 @@ export type Course = {
   created_at: string;
 };
 
-export type Courses = Course[];
+export interface StateCourse extends Course {
+  is_purchased: boolean;
+  is_favorite: boolean;
+  video_progress: number;
+}

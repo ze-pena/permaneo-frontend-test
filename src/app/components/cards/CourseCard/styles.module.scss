@@ -1,0 +1,89 @@
+@use '../../../styles/scss/variables/colors' as *;
+@use '../../../styles/scss/mixins/typography' as *;
+
+.course-card {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 16px;
+  background-color: $course-card-background;
+  border-radius: 16px;
+  animation: slide-appear 1s ease;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    div {
+      min-width: 48px;
+      height: 48px;
+      background-color: $course-card-logo-background;
+      border-radius: 50%;
+    }
+
+    span {
+      flex-grow: 1;
+      @include font-custom(18, 24, left, 'Inter', 400, $course-card-title);
+    }
+  }
+
+  &__body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 8px;
+
+    p {
+      flex-grow: 1;
+      @include font-custom(16, 18, left, 'Inter', 400, $course-card-description);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+
+      a {
+        cursor: pointer;
+        align-self: flex-start;
+        padding: 8px 16px;
+        background-color: $course-card-button-background;
+        border: 0;
+        border-radius: 14px;
+        @include font-custom(12, 14, left, 'Inter', 400, $course-card-button-text);
+        white-space: nowrap;
+      }
+
+      div {
+        display: flex;
+        align-items: flex-start;
+        gap: 4px;
+        padding-left: 8px;
+
+        i {
+          color: $course-card-status-text;
+        }
+
+        span {
+          @include font-custom(12, 14, left, 'Inter', 400, $course-card-status-text);
+        }
+      }
+    }
+  }
+}
+
+@keyframes slide-appear {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

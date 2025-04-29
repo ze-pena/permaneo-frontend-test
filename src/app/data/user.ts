@@ -15,4 +15,5 @@ export const user = {
       dateJoined: '2023-04-05',
     },
   ],
+  favorites: [],
 };

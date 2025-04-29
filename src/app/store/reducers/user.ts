@@ -1,31 +1,45 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '@/app/interfaces/User';
+import { User, UserCourse, UserFavorite } from '@/app/interfaces/User';
 
-interface IUserState {
-  isLoading: boolean;
+type IUserState = {
   user: User;
-}
+};
 
 const initialState: IUserState = {
-  isLoading: false,
   user: {
     id: 0,
     name: '',
     courses: [],
+    favorites: [],
   },
 };
 
 export const getUser = createAction('user/getUser');
 
 const userSlice = createSlice({
-  name: 'auth',
+  name: 'user',
   initialState,
   reducers: {
     initUserState: (state, action: PayloadAction<User>) => {
-      return Object.assign(state, { user: action.payload, isLoading: false });
+      Object.assign(state, { user: action.payload, isLoading: false });
+    },
+    userBuyCourse: (state, action: PayloadAction<UserCourse>) => {
+      state.user.courses.push(action.payload);
+    },
+    userFavoriteCourse: (state, action: PayloadAction<UserFavorite>) => {
+      const stateIndex = state.user.favorites.findIndex(
+        favorite => favorite.courseId === action.payload.courseId
+      );
+
+      if (stateIndex > -1) {
+        state.user.favorites.splice(stateIndex, 1);
+        return;
+      }
+
+      state.user.favorites.push(action.payload);
     },
   },
 });
 
-export const { initUserState } = userSlice.actions;
+export const { initUserState, userBuyCourse, userFavoriteCourse } = userSlice.actions;
 export default userSlice.reducer;
