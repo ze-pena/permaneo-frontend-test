@@ -1,0 +1,40 @@
+@function convert-to-rem($fontSize, $RemDefaultSize: 16) {
+  @return calc($fontSize / $RemDefaultSize);
+}
+
+@mixin font-custom(
+  $min-fs,
+  $max-fs,
+  $textAlign: left,
+  $fontFamily: 'Inter',
+  $fontWeight: 400,
+  $color: #181a20
+) {
+  $min-fs-rem: convert-to-rem($min-fs) + rem;
+  $max-fs-rem: convert-to-rem($max-fs) + rem;
+
+  $min-lh-rem: convert-to-rem(calc($min-fs * 1.5)) + rem;
+  $max-lh-rem: convert-to-rem(calc($max-fs * 1.5)) + rem;
+
+  $min-ws: 280;
+  $max-ws: 1920;
+
+  $fluid-fs: calc(convert-to-rem($max-fs) - convert-to-rem($min-fs));
+
+  $fluid-ws: calc(convert-to-rem($max-ws) - convert-to-rem($min-ws));
+
+  $fluid-slope: calc($fluid-fs / $fluid-ws);
+
+  $fluid-intersection: calc(convert-to-rem($min-fs) - ($fluid-slope * convert-to-rem($min-ws)));
+
+  $slope-vw: calc($fluid-slope * 100) + vw;
+  $intersection-fs-rem: $fluid-intersection + rem;
+  $intersection-lh-rem: calc($fluid-intersection * 1.5) + rem;
+
+  text-align: $textAlign;
+  font-family: $fontFamily;
+  font-size: clamp($min-fs-rem, calc($intersection-fs-rem + $slope-vw), $max-fs-rem);
+  font-weight: $fontWeight;
+  line-height: clamp($min-lh-rem, calc($intersection-lh-rem + $slope-vw), $max-lh-rem);
+  color: $color;
+}

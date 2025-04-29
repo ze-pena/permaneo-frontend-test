@@ -1,0 +1,49 @@
+@use './styles/scss/variables/viewports' as *;
+@use './styles/scss/variables/colors' as *;
+@use './styles/scss/mixins/typography' as *;
+
+.home {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  &__title {
+    @include font-custom(18, 56, left, 'Inter', 800, $page-title);
+    white-space: normal;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  &__body {
+    flex-grow: 1;
+    display: flex;
+
+    &__course-list {
+      flex-grow: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: flex-start;
+      gap: 24px;
+
+      @media (min-width: $tablet-viewport-1) {
+        justify-content: flex-start;
+      }
+
+      li {
+        flex-grow: 1;
+        flex-basis: 100%;
+        display: flex;
+
+        @media (min-width: $tablet-viewport-1) {
+          max-width: calc(100% / 2 - 24px / 2);
+        }
+
+        @media (min-width: $tablet-viewport-3) {
+          max-width: calc(100% / 3 - 48px / 3);
+        }
+      }
+    }
+  }
+}

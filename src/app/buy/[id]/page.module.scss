@@ -1,0 +1,15 @@
+@use '../../styles/scss/mixins/typography' as *;
+@use '../../styles/scss/variables/colors' as *;
+
+.buy {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+
+  & > h1 {
+    @include font-custom(18, 56, left, 'Inter', 800, $page-title);
+    white-space: normal;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}

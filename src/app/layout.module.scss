@@ -1,0 +1,67 @@
+@use './styles/scss/variables/viewports' as *;
+@use './styles/scss/variables/colors' as *;
+@use './styles/scss/mixins/typography' as *;
+@use './styles/scss/mixins/scroll' as *;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: $main-layout-background;
+  overflow: hidden auto;
+  @include scrollbar(8px, $scroll-thumb-color, $scroll-track-background);
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    padding: 48px 16px 0;
+
+    &__navigation {
+      flex-grow: 1;
+      display: flex;
+      max-width: $monitor-viewport-1;
+
+      a {
+        outline: none;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        &:first-of-type {
+          margin-right: auto;
+        }
+
+        div {
+          width: 32px;
+          height: 32px;
+          background-color: $link-logo-background;
+          border-radius: 50%;
+        }
+
+        span {
+          @include font-custom(16, 18, left, 'Inter', 700, $link-font);
+        }
+
+        i {
+          font-size: 1.75rem;
+          color: $favorite-color-alt;
+        }
+      }
+    }
+  }
+
+  &__body {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 48px 16px;
+
+    &__main {
+      flex-grow: 1;
+      display: flex;
+      width: 100%;
+      max-width: $monitor-viewport-1;
+    }
+  }
+}
